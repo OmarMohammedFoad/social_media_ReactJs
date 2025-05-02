@@ -3,7 +3,7 @@ import Navbar from "./NavBar";
 import RightSide from "./RighSide";
 import LeftSide from "./LeftSide";
 
-export default function Layout(params) {
+export default function Layout() {
   return (
     <>
       <div className="">

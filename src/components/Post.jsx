@@ -35,7 +35,7 @@ export default ({
   }, [post.likes, currentUser._id]);
 
   const toggleLike = async () => {
-    console.log(currentUser._id);
+    // console.log(currentUser._id);
     
     const result = await handleLike(post._id, currentUser.id);
     if (result) {

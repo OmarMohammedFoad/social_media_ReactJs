@@ -21,9 +21,7 @@ export default function Profile() {
   const [comment, setComment] = useState("");
 
   const [edit, isEditing] = useState(false);
-  const { token,currentUser } = useAuth();
-
-  const url = "http://localhost:3000";
+  const { currentUser } = useAuth();
 
   const fetchPosts = async () => {
     try {
@@ -46,11 +44,7 @@ export default function Profile() {
 
   const fetchUserInfo = async () => {
     try {
-      const { data } = await axios.get(`${url}/auth/profile-info`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const { data } = await axiosUrl("auth/profile-info", "get", false);
 
       setProfile(data);
     } catch (error) {
@@ -69,27 +63,22 @@ export default function Profile() {
       formData.append("bio", profile.bio);
       formData.append("image", profilePicture);
 
-      const res = await axios.put(`${url}/auth/update-profile`, formData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          Accept:"multipart/form-data"
-        },
-      });
-      console.log(res.data,"asdda");
-      
+      const res = await axiosUrl("auth/update-profile", "put", true, formData);
+      console.log(res.data, "asdda");
+
       setProfile(res.data);
       toast.success("Profile updated successfully!");
       fetchUserInfo();
     } catch (error) {
       console.log(error);
-      
+
       toast.error("Failed to update profile");
     }
   };
 
   const deletePost = async (postId) => {
     try {
-      const res = await axiosUrl(`posts/${postId}`, "delete");
+      await axiosUrl(`posts/${postId}`, "delete");
       toast.success("Post deleted successfully");
       fetchPosts();
     } catch (error) {
@@ -104,7 +93,6 @@ export default function Profile() {
     // updateUserInfo()
   }, []);
 
-  
   return (
     <div className="w-full bg-gray-300 flex flex-col   xs:justify-center  overflow-y-auto items-center gap-2.5 sticky top-0 md:w-1/2  ">
       <Toaster

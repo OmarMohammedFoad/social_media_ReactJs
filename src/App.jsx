@@ -7,30 +7,41 @@ import NotFound from "./pages/NotFound";
 import Profile from "./pages/Profile";
 import Register from "./pages/Register";
 import { createBrowserRouter, RouterProvider } from "react-router";
+import { PrivateRoutes } from "./components/PrivateRoutes";
+import { PublicRoutes } from "./components/PublicRoutes";
 
 function App() {
   const router = createBrowserRouter([
     {
-      path: "login",
-      Component: Login,
+      element: <PublicRoutes />,
+      children: [
+        {
+          path: "login",
+          Component: Login,
+        },
+        {
+          path: "register",
+          Component: Register,
+        },
+      ],
     },
-
-    {
-      path: "register",
-      Component: Register,
-    },
-
     {
       path: "/",
-      Component: Layout,
+      element: <PrivateRoutes />,
       children: [
         {
           path: "/",
-          Component: Home,
-        },
-        {
-          path: "/profile/",
-          Component: Profile,
+          Component: Layout,
+          children: [
+            {
+              index: true,
+              Component: Home,
+            },
+            {
+              path: "profile",
+              Component: Profile,
+            },
+          ],
         },
       ],
     },
@@ -39,6 +50,7 @@ function App() {
       Component: NotFound,
     },
   ]);
+
   return (
     <AuthProvider>
       <ThemeProvider>
