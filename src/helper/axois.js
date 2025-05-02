@@ -14,8 +14,8 @@ export const axiosUrl = async (endpoint, method, contentType = false, body = und
     if (import.meta.env.VITE_API_URL === 'development') {
       url = 'http://localhost:3000/'
     }else{
-      console.log('LOl');
-      
+
+        url= 'https://socialmediaapi-production-412c.up.railway.app/'
     }
 
     const res = await axios({
