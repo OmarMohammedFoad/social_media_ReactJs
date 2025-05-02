@@ -1,6 +1,8 @@
 import { Link } from "react-router";
 import { useFormik } from "formik";
 // import { signUp } from "../services/authService";
+import { axiosUrl } from "../helper/axois";
+
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import axios from "axios";
