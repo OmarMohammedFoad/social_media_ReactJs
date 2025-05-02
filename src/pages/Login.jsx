@@ -31,7 +31,7 @@ export default function Login() {
 
   const login = async (email, password) => {
     try {
-     const res = await axiosUrl("auth/register", "post", false, {
+     const res = await axiosUrl("auth/login", "post", false, {
         email,
         password
       });
