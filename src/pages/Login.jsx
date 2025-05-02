@@ -4,6 +4,8 @@ import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router";
 import { useNavigate } from "react-router";
 import { AuthProvider, useAuth } from "../context/authContext";
+import {axiosUrl} from "../helper/axois";
+
 const validate = (values) => {
   const errors = {};
   if (!values.email) {
@@ -29,9 +31,9 @@ export default function Login() {
 
   const login = async (email, password) => {
     try {
-      const res = await axios.post(url, {
+     const res = await axiosUrl("auth/register", "post", false, {
         email,
-        password,
+        password
       });
       // console.log(res.data);
 
