@@ -55,7 +55,7 @@ export default ({
             </div>
           </div>
           <div className="flex flex-col justify-center">
-            <h1 className="font-extrabold">{post.author.username}</h1>
+            <h1 className="font-extrabold text-gray-500">{post.author.username}</h1>
             <span className="font-light text-sm">
               {date.toUTCString(post.createdAt)}
             </span>
@@ -132,13 +132,13 @@ export default ({
       </div>
 
       <div>
-        <h1 className="font-bold">
+        <h1 className="font-bold text-gray-400">
           {totalLikes} <span>Likes</span>
         </h1>
       </div>
       <div>
         <p className="text-sm">
-          <span className="font-bold">{post.author.username}</span>{" "}
+          <span className="font-bold text-gray-500">{post.author.username}</span>{" "}
           {seeMore
             ? post.content
             : post.content.length > 100
@@ -171,7 +171,7 @@ export default ({
                 </div>
               </div>
               <span className="font-bold">{comment.commenter.username}</span>
-              <span>{comment.comment}</span>
+              <span className="text-gray-500">{comment.comment}</span>
             </div>
           )
         )}
@@ -186,7 +186,7 @@ export default ({
             type="text"
             value={comment}
             placeholder="Add a comment..."
-            className="w-full text-sm p-2 outline-none"
+            className="w-full  text-gray-500 ring-gray-300 ring-2 text-sm p-2 outline-none"
             onKeyDown={(e) => {
               e.key === "Enter" && handleComment(post._id);
             }}

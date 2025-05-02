@@ -29,7 +29,7 @@ export const SharePost = ({
               />
             </div>
           </div>
-          <h1 className="text-xl font-light">{currentUser?.name}</h1>
+          <h1 className="text-xl font-light text-gray-500">{currentUser?.name}</h1>
         </div>
 
         {/* Input */}
@@ -39,7 +39,7 @@ export const SharePost = ({
             type="text"
             placeholder="What's on your mind?"
             value={post}
-            className="w-full outline-none text-sm placeholder:text-gray-400"
+            className="w-full text-black outline-none text-sm placeholder:text-gray-400"
             onChange={(e) => setContent(e.target.value)}
           />
         </div>
@@ -58,7 +58,7 @@ export const SharePost = ({
               className="hidden"
               onChange={(e) => setImage(e.target.files[0])}
             />
-            <span className="font-light text-sm">Add photo</span>
+            <span className="font-light text-sm text-gray-400">Add photo</span>
             {image && (
               <div className="h-28 w-28  rounded-lg overflow-hidden">
                 <img

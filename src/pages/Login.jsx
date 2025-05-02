@@ -115,7 +115,7 @@ export default function Login() {
           </Link>
         </div>
         <div className="p-6 lg:p-10 w-full lg:w-1/2 flex flex-col justify-around">
-          <h1 className="text-5xl font-bold mb-6">Login Now</h1>
+          <h1 className="text-5xl font-bold mb-6 text-gray-800">Login Now</h1>
 
           {error && (
             <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-md mb-4">

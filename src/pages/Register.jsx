@@ -130,7 +130,7 @@ export default function Register() {
         </div>
 
         <div className="p-6 lg:p-10 w-full lg:w-1/2 flex flex-col justify-around">
-          <h1 className="text-5xl font-bold mb-6">Register Now!!</h1>
+          <h1 className="text-5xl font-bold mb-6 text-gray-800">Register Now!!</h1>
 
           <form onSubmit={formik.handleSubmit} className="flex flex-col gap-5">
             <input

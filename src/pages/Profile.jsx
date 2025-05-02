@@ -130,7 +130,7 @@ export default function Profile() {
           <form className="flex flex-col items-center gap-2 mt-10">
             <input
               type="text"
-              className="input input-bordered w-full max-w-xs"
+              className="input input-bordered w-full max-w-xs "
               placeholder="Username"
               value={profile.username || ""}
               onChange={(e) =>
@@ -187,7 +187,7 @@ export default function Profile() {
           </form>
         ) : (
           <div className="flex flex-col items-center gap-2">
-            <h2 className="text-2xl font-semibold">{profile.username}</h2>
+              <h2 className="text-2xl font-semibold text-gray-500">{profile.username}</h2>
             <p className="text-gray-500">{profile.jobTitle}</p>
             <p className="text-gray-500">{profile.bio}</p>
           </div>
