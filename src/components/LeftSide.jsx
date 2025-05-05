@@ -12,8 +12,10 @@ import Tutorials from "../assets/11.png";
 import Courses from "../assets/12.png";
 import Fund from "../assets/13.png";
 import { Link } from "react-router";
+import { useAuth } from "../context/authContext";
 
 export default function LeftSide() {
+  const { currentUser } = useAuth;
   return (
     <>
       <aside className="md:flex md:flex-1/4  w-0.5 p-3 sticky overflow-y-scroll appearance-none hidden">
@@ -35,7 +37,7 @@ export default function LeftSide() {
                 />
               </svg>
               <Link to={"/profile"}>
-                <span>Omar fouad</span>
+                <span>`${currentUser.userName}</span>
               </Link>
             </div>
             <div className="flex items-center gap-1.5 hover:bg-gray-200 p-1  hover:rounded-l cursor-pointer  ">
