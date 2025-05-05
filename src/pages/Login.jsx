@@ -1,10 +1,11 @@
-import axios from "axios";
+
 import { useFormik } from "formik";
-import { useContext, useEffect, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router";
 import { useNavigate } from "react-router";
-import { AuthProvider, useAuth } from "../context/authContext";
-import {axiosUrl} from "../helper/axois";
+import { useAuth } from "../context/authContext";
+import { axiosUrl } from "../helper/axois";
+
 const validate = (values) => {
   const errors = {};
   if (!values.email) {
@@ -37,7 +38,7 @@ export default function Login() {
 
       const res = await axiosUrl("auth/login", "post", false, {
         email,
-        password
+        password,
       });
 
       // console.log(res.data);
