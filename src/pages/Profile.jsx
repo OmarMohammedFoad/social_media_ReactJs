@@ -22,10 +22,21 @@ export default function Profile() {
 
   const [edit, isEditing] = useState(false);
   const { currentUser } = useAuth();
+  const updatePost = async (postId, formData) => {
+    try {
+      // console.log(postId, "postId", newContent);
 
+      await axiosUrl(`posts/${postId}`, "put", true, formData);
+      toast.success("the post updated !!");
+      fetchPosts();
+    } catch (err) {
+      console.error("Failed to update post", err);
+    }
+  };
   const fetchPosts = async () => {
     try {
       const res = await axiosUrl("posts/user-posts/", "get");
+
       setPosts(res.data);
     } catch (error) {
       console.log(error);
@@ -52,8 +63,6 @@ export default function Profile() {
       toast.error("Failed to fetch user information");
     }
   };
-
-
 
   const updateUserInfo = async (e) => {
     try {
@@ -221,6 +230,7 @@ export default function Profile() {
           }
           deletePost={deletePost}
           key={post._id}
+          updatePost={(postId, content) => updatePost(postId, content)}
         />
       ))}
     </div>

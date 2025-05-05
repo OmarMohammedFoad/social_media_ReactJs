@@ -2,6 +2,7 @@ import { useAuth } from "../context/authContext";
 import {
   Bookmark,
   Heart,
+  ImageIcon,
   MessageCircle,
   MoreHorizontal,
   Share2,
@@ -15,6 +16,7 @@ export default ({
   setLike,
   // liked,
   // totalLikes,
+  updatePost,
   comment = "",
   setComment = "",
   handleComment = "",
@@ -24,6 +26,9 @@ export default ({
   const [open, setOpen] = useState(false);
   const [toggleComment, setToggleComment] = useState(false);
   const [seeMore, setSeeMore] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [editPost, setEditPost] = useState("");
+  const [editImagePost, setImagePost] = useState(null);
   const date = new Date();
 
   const [liked, setLiked] = useState(false);
@@ -33,16 +38,24 @@ export default ({
   useEffect(() => {
     setLiked(post.likes.includes(currentUser.id));
   }, [post.likes, currentUser._id]);
-
+  const handleToggleImage = () => {
+    const fileInput = document.querySelector('input[type="file"]');
+    if (fileInput) {
+      fileInput.click();
+      setImagePost(fileInput.files[0]);
+    }
+  };
   const toggleLike = async () => {
     // console.log(currentUser._id);
-    
+
     const result = await handleLike(post._id, currentUser.id);
     if (result) {
       setLiked(result.liked);
       setTotalLikes(result.totalLikes);
     }
   };
+
+  // console.log(post._id);
 
   return (
     <div className="bg-white p-3 mx-3  rounded-2xl shadow-2xl w-svw md:w-2xl  flex flex-col gap-3">
@@ -86,13 +99,67 @@ export default ({
                   </a>
                 </li>
                 <li>
-                  <a className="text-green-400">Edit Post</a>
+                  <a
+                    className="text-green-400"
+                    onClick={() => setShowEditModal(true)}
+                  >
+                    Edit Post
+                  </a>
                 </li>
               </ul>
             )}
           </div>
         )}
       </div>
+      {showEditModal && (
+        <div className="fixed inset-0 bg-opacity-40 flex justify-center items-center z-50">
+          <div className="bg-white p-4 rounded-xl w-[90%] max-w-md shadow-xl">
+            <h2 className="text-lg font-bold mb-3">Edit Post</h2>
+            <textarea
+              value={editPost}
+              onChange={(e) => setEditPost(e.target.value)}
+              className="w-full p-2 border rounded-md outline-none"
+              rows={4}
+            />
+
+            <ImageIcon
+              onClick={handleToggleImage}
+              className="text-gray-500 cursor-pointer hover:text-cyan-500"
+            />
+            <input
+              type="file"
+              className="hidden"
+              onChange={(e) => setEditImage(e.target.files[0])}
+              accept="image/*"
+            />
+
+            <input type="file" />
+            <div className="flex justify-end mt-4 gap-2">
+              <button
+                className="px-4 py-1 rounded-md bg-gray-300 hover:bg-gray-400"
+                onClick={() => setShowEditModal(false)}
+              >
+                Cancel
+              </button>
+              <button
+                className="px-4 py-1 rounded-md bg-cyan-500 text-white hover:bg-cyan-600"
+                onClick={() => {
+                  // console.log(typeof post._id);
+
+                  const formData = new FormData();
+                  formData.append("content", editPost);
+                  if (editImagePost) formData.append("image", editImagePost);
+
+                  updatePost(post._id, formData);
+                  setShowEditModal(false);
+                }}
+              >
+                Save
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* img  */}
 
