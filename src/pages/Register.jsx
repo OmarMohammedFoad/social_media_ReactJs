@@ -1,11 +1,8 @@
 import { Link } from "react-router";
 import { useFormik } from "formik";
-// import { signUp } from "../services/authService";
-import { axiosUrl } from "../helper/axois";
 
 import { useState } from "react";
 import { useNavigate } from "react-router";
-import axios from "axios";
 import { axiosUrl } from "../helper/axois";
 
 const validate = (values) => {
@@ -50,16 +47,10 @@ export default function Register() {
   const [userName, setUserName] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
-  // const url = "http://localhost:3000/auth/register";
-  
+
   const signUp = async (username, email, password) => {
     try {
-      // const res = await axios.post(url, {
-      //   username,
-      //   email,
-      //   password,
-      // });
-
+ 
       const res = await axiosUrl("auth/register", "post", false, {
         username,
         email,
@@ -136,7 +127,9 @@ export default function Register() {
         </div>
 
         <div className="p-6 lg:p-10 w-full lg:w-1/2 flex flex-col justify-around">
-          <h1 className="text-5xl font-bold mb-6 text-gray-800">Register Now!!</h1>
+          <h1 className="text-5xl font-bold mb-6 text-gray-800">
+            Register Now!!
+          </h1>
 
           <form onSubmit={formik.handleSubmit} className="flex flex-col gap-5">
             <input
