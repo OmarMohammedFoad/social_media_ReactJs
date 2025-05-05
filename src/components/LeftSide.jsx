@@ -37,7 +37,7 @@ export default function LeftSide() {
                 />
               </svg>
               <Link to={"/profile"}>
-                <span>`${currentUser.userName}</span>
+                <span>`${currentUser.name}</span>
               </Link>
             </div>
             <div className="flex items-center gap-1.5 hover:bg-gray-200 p-1  hover:rounded-l cursor-pointer  ">
