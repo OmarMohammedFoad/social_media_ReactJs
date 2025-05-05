@@ -1,4 +1,4 @@
-import { useEffect, useId, useState } from "react";
+import { useEffect, useState } from "react";
 
 import Post from "../components/Post";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -8,7 +8,6 @@ import { SharePost } from "../components/Shared";
 import { Toaster } from "react-hot-toast";
 import {
   addPostHandler,
-  createPost,
   handleComment,
   handleLike,
 } from "../helper/sharedFunctions";
