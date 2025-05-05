@@ -51,8 +51,7 @@ export default function Register() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
   // const url = "http://localhost:3000/auth/register";
-  // const url = "http://localhost:3000/auth/register";
-
+  
   const signUp = async (username, email, password) => {
     try {
       // const res = await axios.post(url, {
