@@ -15,7 +15,7 @@ import { Link } from "react-router";
 import { useAuth } from "../context/authContext";
 
 export default function LeftSide() {
-  const { currentUser } = useAuth;
+  const { currentUser } = useAuth();
   return (
     <>
       <aside className="md:flex md:flex-1/4  w-0.5 p-3 sticky overflow-y-scroll appearance-none hidden">
