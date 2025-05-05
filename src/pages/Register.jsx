@@ -41,16 +41,10 @@ const validate = (values) => {
 
 export default function Register() {
   let navigate = useNavigate();
-
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [userName, setUserName] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
 
   const signUp = async (username, email, password) => {
     try {
- 
       const res = await axiosUrl("auth/register", "post", false, {
         username,
         email,
