@@ -6,6 +6,7 @@ import { axiosUrl } from "../helper/axois";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import axios from "axios";
+import { axiosUrl } from "../helper/axois";
 
 const validate = (values) => {
   const errors = {};
@@ -50,15 +51,21 @@ export default function Register() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
   // const url = "http://localhost:3000/auth/register";
+  // const url = "http://localhost:3000/auth/register";
 
   const signUp = async (username, email, password) => {
     try {
-     const res = await axiosUrl("auth/register", "post", false, {
+      // const res = await axios.post(url, {
+      //   username,
+      //   email,
+      //   password,
+      // });
+
+      const res = await axiosUrl("auth/register", "post", false, {
         username,
         email,
         password,
       });
-
       console.log(res);
       return res.data;
     } catch (error) {

@@ -9,7 +9,7 @@ export const axiosUrl = async (endpoint, method, contentType = false, body = und
     contentType = contentType ? "multipart/form-data" : "application/json";
     // console.log(contentType, "sadssssssssssssssssssssad");
 
-    console.log(import.meta.env.VITE_API_URL);
+    console.log(import.meta.env.VITE_API_URL,"asdasd");
 
     if (import.meta.env.VITE_API_URL === 'development') {
       url = 'http://localhost:3000/'

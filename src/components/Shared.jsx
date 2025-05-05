@@ -1,5 +1,6 @@
 import { ImageIcon } from "lucide-react";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { axiosUrl } from "../helper/axois";
 
 export const SharePost = ({
   currentUser,
@@ -8,13 +9,27 @@ export const SharePost = ({
   setContent,
   handleToggleImage,
   setImage,
-  image
+  image,
 }) => {
-  console.log(image,
-    "image"
-  );
+  console.log(image, "image");
   // console.log("currentUserrrrrr", currentUser);
-  
+
+  const [imageProfile,setImageProfile] =useState();
+  const fetchUserInfo = async () => {
+    try {
+      const { data } = await axiosUrl("auth/profile-info", "get", false);
+      console.log(data);
+
+      setImageProfile(data.profileImage);
+    } catch (error) {
+      console.log(error);
+      toast.error("Failed to fetch user information");
+    }
+  };
+
+  useEffect(() => {
+    fetchUserInfo();
+  }, []);
   return (
     <div className="bg-white w-svw md:w-[80%] rounded-2xl p-4 m-3 shadow-2xl">
       <div className="flex flex-col gap-4">
@@ -23,7 +38,7 @@ export const SharePost = ({
           <div className="avatar">
             <div className="w-12 h-12 rounded-full ring ring-cyan-100 ">
               <img
-                src={currentUser?.imgProfile || "/src/assets/egypt.jpg"}
+                src={imageProfile || "/src/assets/egypt.jpg"}
                 alt="avatar"
                 className="object-cover w-full h-full"
               />

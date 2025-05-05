@@ -4,7 +4,7 @@ import { X, UserPlus } from "lucide-react";
 // Mock data to avoid repetition
 const suggestions = [
   { id: 1, name: "Omar Fouad", imageUrl: "src/assets/egypt.jpg" },
-  { id: 2, name: "Sarah Ashraf", imageUrl: "src/assets/egypt.jpg" },
+  { id: 2, name: "Sarah Gaber", imageUrl: "src/assets/egypt.jpg" },
   { id: 5, name: "Karim Salah", imageUrl: "src/assets/egypt.jpg" },
   { id: 6, name: "Nour Ibrahim", imageUrl: "src/assets/egypt.jpg" },
 ];

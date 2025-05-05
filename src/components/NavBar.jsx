@@ -2,7 +2,8 @@ import { House, MessageCircleMore, User, Bell, Menu, X } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
 import { useNavigate, Link } from "react-router";
 import { useAuth } from "../context/authContext";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import {axiosUrl} from "../helper/axois";
 
 const HiddenEndNavbar = ({ currentUser, token, logOut }) => {
   // console.log(currentUser.imgProfile);
@@ -52,11 +53,29 @@ export default function Navbar() {
   const naviagte = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const { logoutAuth, currentUser, token } = useAuth();
+  const [imgProfile, setImgProfile] = useState();
   const logOut = () => {
     logoutAuth();
     naviagte("/login");
   };
-  console.log("currentUser", currentUser);
+  // console.log("currentUser", currentUser);
+
+  const fetchUserInfo = async () => {
+    try {
+      const { data } = await axiosUrl("auth/profile-info", "get", false);
+      console.log(data);
+      
+      setImgProfile(data.profileImage);
+    } catch (error) {
+      console.log(error);
+      toast.error("Failed to fetch user information");
+    }
+  };
+
+
+  useEffect(() => {
+    fetchUserInfo();
+  }, []);
 
   //? mobile first approach => yalla bena
   return (
@@ -113,9 +132,7 @@ export default function Navbar() {
       </div>
 
       <div className="navbar-end   hidden md:flex   w-64 md:w-full gap-3   ">
-        <button className="btn btn-ghost btn-circle">
-          {/* <User /> */}
-        </button>
+        <button className="btn btn-ghost btn-circle">{/* <User /> */}</button>
 
         <button className="btn btn-ghost btn-circle">
           {/* <Bell className="" /> */}
@@ -134,7 +151,7 @@ export default function Navbar() {
           <div className="w-10 rounded-full">
             <Link to={"/profile"}>
               {" "}
-              <img alt="profile-img" src={currentUser.imgProfile} />
+              <img alt="profile-img" src={imgProfile} />
             </Link>
           </div>
         </div>

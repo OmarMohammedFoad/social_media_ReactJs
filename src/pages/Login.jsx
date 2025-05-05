@@ -5,7 +5,6 @@ import { Link } from "react-router";
 import { useNavigate } from "react-router";
 import { AuthProvider, useAuth } from "../context/authContext";
 import {axiosUrl} from "../helper/axois";
-
 const validate = (values) => {
   const errors = {};
   if (!values.email) {
@@ -23,18 +22,24 @@ const validate = (values) => {
 export default function Login() {
   // const [] = useState();
   let navigate = useNavigate();
-  const {  loginAuth } = useAuth();
+  const { loginAuth } = useAuth();
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  const url = "http://localhost:3000/auth/login";
+  // const url = "http://localhost:3000/auth/login";
 
   const login = async (email, password) => {
     try {
-     const res = await axiosUrl("auth/login", "post", false, {
+      // const res = await axios.post(url, {
+      //   email,
+      //   password,
+      // });
+
+      const res = await axiosUrl("auth/login", "post", false, {
         email,
         password
       });
+
       // console.log(res.data);
 
       return res.data;

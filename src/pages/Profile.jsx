@@ -53,25 +53,22 @@ export default function Profile() {
     }
   };
 
+
+
   const updateUserInfo = async (e) => {
     try {
       e.preventDefault();
-
       const formData = new FormData();
       formData.append("username", profile.username);
       formData.append("jobTitle", profile.jobTitle);
       formData.append("bio", profile.bio);
       formData.append("image", profilePicture);
-
       const res = await axiosUrl("auth/update-profile", "put", true, formData);
-      console.log(res.data, "asdda");
-
       setProfile(res.data);
       toast.success("Profile updated successfully!");
       fetchUserInfo();
     } catch (error) {
       console.log(error);
-
       toast.error("Failed to update profile");
     }
   };
